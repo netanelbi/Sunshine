@@ -153,7 +153,7 @@ namespace input {
       ALT = 0x2,
       SHIFT = 0x4,
 
-      SHORTCUT = CTRL | ALT | SHIFT
+      SHORTCUT = CTRL | SHIFT
     };
 
     input_t(
@@ -198,12 +198,12 @@ namespace input {
    */
   inline int
   apply_shortcut(short keyCode) {
-    constexpr auto VK_F1 = 0x70;
-    constexpr auto VK_F13 = 0x7C;
+    constexpr auto VK_1 = 0x31;
+    constexpr auto VK_9 = 0x39;
 
     BOOST_LOG(debug) << "Apply Shortcut: 0x"sv << util::hex((std::uint8_t) keyCode).to_string_view();
 
-    if (keyCode >= VK_F1 && keyCode <= VK_F13) {
+    if (keyCode >= VK_1 && keyCode <= VK_9) {
       mail::man->event<int>(mail::switch_display)->raise(keyCode - VK_F1);
       return 1;
     }
